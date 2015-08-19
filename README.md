@@ -20,6 +20,6 @@ installation
 
 ```
 #while in directory of the cabal sandobx you want to use csv-text
-git clone [TODO: specify Phabricator URL for this repository]
+git clone ssh://phab@phabricator.pku.pdms.jnj.com/diffusion/CSVTEXT/csv-text.git
 cabal install csv-text/
 ```
