@@ -1,5 +1,4 @@
-{-# OPTIONS_GHC -Wall #-}
-
+{-# OPTIONS_GHC -Wall #-} 
 module CSVText where
 
 import qualified Data.ByteString as B
