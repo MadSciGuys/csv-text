@@ -18,8 +18,8 @@ to deal with Latin-1, which took me an emberassingly long time to find.
 installation
 ------------
 
-` 
+```
 #while in directory of the cabal sandobx you want to use csv-text
 git clone [TODO: specify Phabricator URL for this repository]
 cabal install csv-text/
-`
+```
