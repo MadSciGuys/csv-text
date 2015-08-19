@@ -20,8 +20,8 @@ xsvs separator splitLines text
     [] -> ([], [])
     (header:rowsOfColumns) -> (header, rowsOfColumns)
 
-prescription :: T.Text -> [T.Text]
-prescription = T.splitOn "\r\n"
+dosLines :: T.Text -> [T.Text]
+dosLines = T.splitOn "\r\n"
 
 retOrNewLines :: T.Text -> [T.Text]
 retOrNewLines = T.split (\ c -> c=='\n' || c=='\r')
