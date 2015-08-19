@@ -1,4 +1,5 @@
 {-# OPTIONS_GHC -Wall #-} 
+{-# LANGUAGE OverloadedStrings #-}
 module CSVText where
 
 import qualified Data.ByteString as B
@@ -9,16 +10,18 @@ import Data.Text.Encoding (decodeLatin1)
 readLatin1 :: FilePath -> IO T.Text
 readLatin1 = fmap decodeLatin1 . B.readFile
 
-type HeaderRowsofColumns = ([T.Text], [[T.Text]])
+csvs, tsvs :: T.Text -> ([T.Text], [[T.Text]])
+csvs = xsvs ','  retOrNewLines
+tsvs = xsvs '\t' retOrNewLines
 
-csvs, tsvs :: T.Text -> HeaderRowsofColumns
-csvs = xsvs ','; tsvs = xsvs '\t'
-
-xsvs :: Char -> T.Text -> HeaderRowsofColumns
-xsvs separator text 
-  = case fmap (T.split (==separator)) $ retLines text of
+xsvs :: Char -> (T.Text -> [T.Text]) -> T.Text -> ([T.Text], [[T.Text]])
+xsvs separator splitLines text
+  = case fmap (T.split (==separator)) $ splitLines text of
     [] -> ([], [])
     (header:rowsOfColumns) -> (header, rowsOfColumns)
 
-retLines :: T.Text -> [T.Text]
-retLines = T.split (\ c -> c=='\n' || c=='\r')
+prescription :: T.Text -> [T.Text]
+prescription = T.splitOn "\r\n"
+
+retOrNewLines :: T.Text -> [T.Text]
+retOrNewLines = T.split (\ c -> c=='\n' || c=='\r')
