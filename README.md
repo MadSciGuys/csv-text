@@ -19,7 +19,7 @@ installation
 ------------
 
 ```
-#while in directory of the cabal sandobx you want to use csv-text
+#while in directory of the cabal sandox where you want to use csv-text
 git clone ssh://phab@phabricator.pku.pdms.jnj.com/diffusion/CSVTEXT/csv-text.git
 cabal install csv-text/
 ```
