@@ -25,3 +25,18 @@ dosLines = T.splitOn "\r\n"
 
 retOrNewLines :: T.Text -> [T.Text]
 retOrNewLines = T.split (\ c -> c=='\n' || c=='\r')
+
+intercBldrMap :: Char -> (a -> BB.Builder) -> [a] -> BB.Builder
+intercBldrMap c toBuilder = intercBldr c . map toBuilder
+
+intercBldr :: Char -> [BB.Builder] -> BB.Builder --by Travis; really useful
+intercBldr c (b:bs) = b<>(mconcat $ map ((BB.charUtf8 c)<>) bs)
+intercBldr _ []     = mempty
+
+bbFromLazy :: BLC.ByteString -> BB.Builder
+bbFromLazy = BB.byteString . BLC.toStrict
+
+--There aren't any checks to see if the parts line up.  
+--Should I maybe write a toCsvErr?
+toCSV :: [[BLC.ByteString]] -> BB.Builder
+toCSV = intercBldr '\n' . map (intercBldr ',' . map bbFromLazy)

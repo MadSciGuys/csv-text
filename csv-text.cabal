@@ -2,7 +2,7 @@
 -- documentation, see http://haskell.org/cabal/users-guide/
 
 name:                csv-text
-version:             0.1.0.0
+version:             0.1.1.0
 synopsis:            Strictly parses an entire comma (or other delimeter) separated file.
 -- description:         
 license:             MIT
