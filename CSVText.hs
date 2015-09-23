@@ -3,8 +3,11 @@
 module CSVText where
 
 import qualified Data.ByteString as B
+import qualified Data.ByteString.Builder as BB
+import qualified Data.ByteString.Lazy.Char8 as BLC
 import qualified Data.Text as T
 
+import Data.Monoid ((<>))
 import Data.Text.Encoding (decodeLatin1)
 
 readLatin1 :: FilePath -> IO T.Text
