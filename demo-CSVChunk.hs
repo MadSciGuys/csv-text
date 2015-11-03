@@ -20,4 +20,3 @@ main = getArgs >>= \case
       ++"  --megabytes inPath outPrefix\n"
       ++"  --kilobytes inPath outPrefix\n"
       ++"  --bytes inPath outPrefix"
-
