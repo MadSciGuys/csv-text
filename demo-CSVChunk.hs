@@ -7,8 +7,8 @@ import CSVChunk (splitFileIO)
 
 main :: IO ()
 main = getArgs >>= \case
-  [unit, n, inPath, outPrefix] -> 
-    let withSize mult = splitFileIO (mult * read n) inPath outPrefix in
+  [unit, n, inPath] -> 
+    let withSize mult = () <$ splitFileIO (mult * read n) inPath in
     case unit of 
       ('-':'-':'m':_) -> withSize $ 1024 * 1024
       ('-':'-':'k':_) -> withSize $ 1024
@@ -17,6 +17,6 @@ main = getArgs >>= \case
   _ -> useage
   where
     useage = putStrLn $ "USEAGE \n"
-      ++"  --megabytes inPath outPrefix\n"
-      ++"  --kilobytes inPath outPrefix\n"
-      ++"  --bytes inPath outPrefix"
+      ++"  --megabytes inPath\n"
+      ++"  --kilobytes inPath\n"
+      ++"  --bytes inPath"
